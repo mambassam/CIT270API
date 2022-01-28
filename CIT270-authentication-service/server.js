@@ -12,7 +12,7 @@ app.get('/',(req,res)=>{
 
 app.post('/login',(req,res)=>{
     console.log(JSON.stringify(req.body));
-    if(req.body.userName =="mmamb" && req.body.password=="blash"){
+    if(req.body.userName =="mmamb" && req.body.password=="blash3c7f506040bffb0aada69cfd5b101f4b"){
         res.send("welcome")
     }else{
         res.send("who are you");
