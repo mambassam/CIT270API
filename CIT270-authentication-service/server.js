@@ -19,5 +19,20 @@ app.post('/login',(req,res)=>{
     }
 });
 
-app.listen(port, ()=>{});
+ // app.listen(port, ()=>{});
+
+// const fs = require('fs');
+// const { Http2ServerRequest } = require('http2');
+
+//...
+const https = require('https')
+const fs = require ('fs')
+
+https.createServer({
+    key: fs.readFileSync('server.key'),
+    cert: fs.readFileSync('server.cert')
+}, app).listen(3000, () => {
+    console.log('listing...')
+})
+
 
