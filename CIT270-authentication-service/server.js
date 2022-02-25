@@ -32,7 +32,7 @@ https.createServer({
     key: fs.readFileSync('server.key'),
     cert: fs.readFileSync('server.cert'),
     passphrase:"P@ssw0rd"
-}, app).listen(3000, () => {
+}, app).listen(443, () => {
     console.log('listing...')
 })
 
