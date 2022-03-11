@@ -1,9 +1,13 @@
 const express = require('express')
 const bodyParser = require('body-parser');
 
-const port = 3000;
+const port = 443;
 
 const app = express();
+
+app.use(bodyParser.json());
+
+app.use(express.static('public'));
 
 app.use(bodyParser.json());
 
@@ -12,7 +16,7 @@ app.get('/',(req,res)=>{
 
 app.post('/login',(req,res)=>{
     console.log(JSON.stringify(req.body));
-    if(req.body.userName =="mmamb" && req.body.password=="3c7f506040bffb0aada69cfd5b101f4b"){
+    if(req.body.userName =="mmamb" && req.body.password=="feabbe95a07d5b23f9054a00e3c50f82"){
         res.send("welcome")
     }else{
         res.send("who are you");
