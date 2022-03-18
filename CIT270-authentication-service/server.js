@@ -1,9 +1,15 @@
+const https = require('https');
+const fs = require('fs');
 const express = require('express')
 const bodyParser = require('body-parser');
 
 const port = 443;
 
 const app = express();
+
+const md5 = require('md5');
+
+let invalidloginAttempts
 
 app.use(bodyParser.json());
 
@@ -12,13 +18,20 @@ app.use(express.static('public'));
 app.use(bodyParser.json());
 
 app.get('/',(req,res)=>{
-    res.send("Hello browser");});
+    res.send("Hello browser");
+});
 
 app.post('/login',(req,res)=>{
     console.log(JSON.stringify(req.body));
-    if(req.body.userName =="mmamb" && req.body.password=="feabbe95a07d5b23f9054a00e3c50f82"){
+    if(invalidloginAttempts>=5){
+        res.status(403); //unauthorized
+    }
+    else if(req.body.userName =="mmamb" && md5(req.body.password)=="feabbe95a07d5b23f9054a00e3c50f82"){
         res.send("welcome")
     }else{
+        invalidloginAttempts++;
+        console.log(invalidloginAttempts+"invalid attempts");
+        res.status(403); //unauthorized
         res.send("who are you");
     }
 });
