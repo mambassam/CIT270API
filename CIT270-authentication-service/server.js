@@ -42,8 +42,6 @@ app.post('/login',(req,res)=>{
 // const { Http2ServerRequest } = require('http2');
 
 //...
-const https = require('https')
-const fs = require ('fs')
 
 https.createServer({
     key: fs.readFileSync('server.key'),
